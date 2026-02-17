@@ -594,9 +594,9 @@ const App = () => {
         </div>
         <button
           onClick={() => setApiSettingsOpen(true)}
-          className="ml-1 flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-1 text-xs text-slate-600 transition-colors hover:bg-slate-100"
+          className="ml-1 flex items-center gap-1 rounded-xl border border-red-100 bg-gradient-to-r from-white to-red-50 px-2.5 py-1.5 text-xs font-semibold text-red-600 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
         >
-          <Settings size={12} />
+          <Settings size={13} />
           API 设置
         </button>
       </header>
@@ -713,63 +713,70 @@ const App = () => {
 
 
       {apiSettingsOpen && (
-        <div className="absolute inset-0 z-[70] flex items-center justify-center bg-black/30 p-4">
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-bold text-slate-800">ARK API 设置</h3>
-              <button
-                onClick={() => setApiSettingsOpen(false)}
-                className="rounded-full p-1 text-slate-500 hover:bg-slate-100"
-              >
-                <X size={18} />
-              </button>
+        <div className="absolute inset-0 z-[70] flex items-center justify-center bg-slate-950/45 p-4 backdrop-blur-sm">
+          <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-white/40 bg-white/90 p-0 shadow-2xl">
+            <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-red-300/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -right-16 h-64 w-64 rounded-full bg-orange-300/30 blur-3xl" />
+
+            <div className="relative border-b border-slate-100 bg-white/70 px-6 py-5">
+              <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-red-500">VoyageBoard</div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl font-black text-slate-800">ARK API 设置中心</h3>
+                <button
+                  onClick={() => setApiSettingsOpen(false)}
+                  className="rounded-full p-1.5 text-slate-500 transition-colors hover:bg-slate-100"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <p className="mt-1 text-xs text-slate-500">本地浏览器存储，不会自动上传到仓库。</p>
             </div>
 
-            <div className="space-y-3 text-sm">
+            <div className="relative space-y-4 px-6 py-5 text-sm">
               <label className="block">
-                <div className="mb-1 text-slate-600">API Key</div>
+                <div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">API Key</div>
                 <input
                   type="password"
                   value={apiConfig.apiKey}
                   onChange={(e) => setApiConfig((p) => ({ ...p, apiKey: e.target.value.trim() }))}
                   placeholder="24037c8d-xxxx..."
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-300"
+                  className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 text-sm outline-none ring-red-200 transition-all focus:border-red-300 focus:ring-2"
                 />
               </label>
 
               <label className="block">
-                <div className="mb-1 text-slate-600">Model Endpoint ID</div>
+                <div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">Model Endpoint ID</div>
                 <input
                   type="text"
                   value={apiConfig.model}
                   onChange={(e) => setApiConfig((p) => ({ ...p, model: e.target.value.trim() }))}
                   placeholder="ep-20260217114921-wvt6d"
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-300"
+                  className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 text-sm outline-none ring-red-200 transition-all focus:border-red-300 focus:ring-2"
                 />
               </label>
 
               <label className="block">
-                <div className="mb-1 text-slate-600">Base URL</div>
+                <div className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500">Base URL</div>
                 <input
                   type="text"
                   value={apiConfig.baseUrl}
                   onChange={(e) => setApiConfig((p) => ({ ...p, baseUrl: e.target.value.trim() }))}
                   placeholder="https://ark.cn-beijing.volces.com/api/v3"
-                  className="w-full rounded-lg border border-slate-200 px-3 py-2 outline-none focus:border-red-300"
+                  className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 text-sm outline-none ring-red-200 transition-all focus:border-red-300 focus:ring-2"
                 />
               </label>
             </div>
 
-            <div className="mt-5 flex items-center justify-between">
+            <div className="relative flex items-center justify-between border-t border-slate-100 bg-white/70 px-6 py-4">
               <button
                 onClick={() => setApiConfig(getDefaultArkConfig())}
-                className="rounded-lg border border-slate-200 px-3 py-2 text-xs text-slate-600 hover:bg-slate-50"
+                className="rounded-xl border border-slate-200 px-3.5 py-2 text-xs font-semibold text-slate-600 transition-colors hover:bg-slate-50"
               >
                 恢复默认
               </button>
               <button
                 onClick={() => setApiSettingsOpen(false)}
-                className="rounded-lg bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700"
+                className="rounded-xl bg-gradient-to-r from-red-600 to-orange-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition-all hover:brightness-105"
               >
                 保存并关闭
               </button>
